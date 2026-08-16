@@ -1,0 +1,11 @@
+langchain
+langchain-community
+langchain-groq
+langchain-openai
+langgraph
+fastapi
+uvicorn
+python-dotenv
+langchain-text-splitters
+sentence-transformers
+faiss-cpu
