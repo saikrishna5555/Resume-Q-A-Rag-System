@@ -9,5 +9,6 @@ def document():
     doc=loader.load()
     return doc
 
+
 if __name__=="__main__":
     document()
