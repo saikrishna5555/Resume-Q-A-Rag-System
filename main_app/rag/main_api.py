@@ -8,6 +8,7 @@ class AskQuestion(BaseModel):
 
 app=FastAPI(title="do you want to know my self")
 
+
 @app.get("/")
 def greet():
     return {
