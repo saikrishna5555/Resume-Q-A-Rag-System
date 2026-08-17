@@ -19,3 +19,4 @@ def ask_question(query:str):
     context = "\n".join(rectrieved_doc)
     return context
 
+
