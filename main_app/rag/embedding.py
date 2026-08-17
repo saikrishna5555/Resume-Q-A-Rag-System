@@ -19,6 +19,7 @@ def vector_store():
     )
     return index
 
+
 if __name__=="__main__":
     embeddings()
     vector_store()
