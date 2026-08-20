@@ -6,9 +6,7 @@ from main import generation
 class AskQuestion(BaseModel):
     question:str
 
-app=FastAPI(title="do you want to know my self")
-
-
+app=FastAPI()
 @app.get("/")
 def greet():
     return {

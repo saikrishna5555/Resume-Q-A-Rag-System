@@ -1,6 +1,13 @@
 from rectriver import ask_question
 from langchain.chat_models import init_chat_model
 from datetime import date
+import re
+
+
+def _clean_response(response: str) -> str:
+    response = re.sub(r"<think>.*?</think>", "", response, flags=re.DOTALL | re.IGNORECASE)
+    response = re.sub(r"^```(?:json)?\s*|\s*```$", "", response.strip(), flags=re.IGNORECASE)
+    return response.strip()
 
 def generation(question:str):
     llm=init_chat_model("groq:qwen/qwen3.6-27b")
@@ -16,19 +23,14 @@ def generation(question:str):
     6. if the user ask abused question respond please ask proper questio6
     7. dont provide any irrelavant responses
     8. send only response match no need to send rules followed
-    IMPORTANT:
-    - Return ONLY the answer.
-    - Do NOT show reasoning.
-    - Do not show context text
-    - Do NOT show analysis.
-    - Do NOT use <think>,</think> tags.
-    - Do NOT explain anything.
+    9. Send the output in JSON format.
+    10. Return only the JSON object, without reasoning, markdown, or explanation.
     {context}
     question:
-    
+
     {question}
     if you dont find and context simply return answer not found
     """
 
     response=llm.invoke(prompt).content
-    return response
+    return _clean_response(response)
